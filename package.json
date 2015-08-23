@@ -1,5 +1,5 @@
 {
-  "name": "typesafe",
+  "name": "typeshave",
   "version": "0.0.5",
   "description": "Lightweight function wrapper to ensure typesafe data. Wrap functions,forms,api's and more with jsonschema.",
   "main": "index.js",
