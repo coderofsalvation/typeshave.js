@@ -19,11 +19,23 @@ Guard your function's incoming data using typesafe wrappers.
     , ( foo, bar ) ->                     }, function(foo, bar) {
       console.log "arguments are valid"     return console.log("arguments are valid");
                                           });
+    
+    foo(); # fail please?                 foo(); // fail please?
 
 > typeshave uses the establish [jsonschema](http://jsonschema.net) validation-format. Re-usable 
 in many other areas (database-, restpayload-, form-validation and so on)
 
-## Yes! PHAT type-safe structures
+## Ohoh..now what?
+
+By specifying a jsonschema like above, running foo() would result in 2 warnings + an TYPESAFE_FAIL exception : 
+
+    typesafe error:  Missing required property: foo
+    typesafe error:  Missing required property: bar 
+    TYPESAFE_FAIL
+
+so we can gracefully deal with this using `try` `catch` and `finally` blocks
+
+## What about PHAT type-safe structures?
 
 Passing around big-ass data-objects?
 You better police that data upfront:
@@ -68,20 +80,6 @@ You better police that data upfront:
                                                              foo = typeshave(mydata, function(data) {
                                                                return console.log("valid data passed!");
                                                              });
-
-## Ready, set, go!
-
-By specifying a jsonschema like above, passing incomplete data like this:
-
-    foo {}
-
-would result in 2 warnings + an TYPESAFE_FAIL exception : 
-
-    typesafe error:  Missing required property: foo
-    typesafe error:  Missing required property: records
-    TYPESAFE_FAIL
-
-so we can gracefully deal with this using `try` `catch` and `finally` blocks
 
 ## Get the full punishment!
 
