@@ -1,0 +1,20 @@
+{
+  "name": "typesafe",
+  "version": "0.0.5",
+  "description": "Lightweight function wrapper to ensure typesafe data. Wrap functions,forms,api's and more with jsonschema.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typesafe",
+    "assertion",
+    "jsonschema",
+    "wrapper"
+  ],
+  "author": "Leon van Kammen / Coder of Salvation",
+  "license": "BSD",
+  "dependencies": {
+    "tv4": "^1.2.3"
+  }
+}
