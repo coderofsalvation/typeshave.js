@@ -31,7 +31,7 @@ Still wondering why functions like this explode once in a while? :D
 
     foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
 
-Did you you try spaghetti-fying your code with if/else checks?
+Did you you try PITA-fying your code with if/else checks?
 
     if( data == undefined data.bar == undefined || bar == undefined || WTF this is frustrating!
 
