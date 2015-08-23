@@ -25,6 +25,8 @@ Guard your function's incoming data using typeshave wrappers in JS & PHP ([types
 > typeshave uses the establish [jsonschema](http://jsonschema.net) validation-format. Re-usable 
 in many other areas (database-, restpayload-, form-validation and so on)
 
+See browser usage below
+
 ## Ohoh..now what?
 
 By specifying a jsonschema like above, running foo() would result in 2 warnings + an TYPESAFE_FAIL exception : 
@@ -118,6 +120,22 @@ Did you you try PITA-fying your code with if/else checks?
 
     if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
     // omg how do I even check properties recursively?
+
+## In the browser 
+
+    <script src="https://raw.githubusercontent.com/coderofsalvation/typeshave.js/master/browser/typeshave.min.js"></script>
+    <script>
+      typeshave = require("typeshave").typesafe;
+
+      var foo = typeshave({
+        foo: { type: "string" },
+        bar: { type: "boolean" }
+      }, function(foo,bar){
+        alert("ok data passed!");
+      });
+
+      foo( "string", true );
+    </script>
 
 
 ## Conclusion

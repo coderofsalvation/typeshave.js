@@ -3,3 +3,4 @@ dir="$(pwd)"
 cd /tmp
 npm install typeshave
 browserify --require typeshave > "$dir"/browser/typeshave.js
+node_modules/.bin/uglify -s browser/typeshave.js --output browser/typeshave.min.js
