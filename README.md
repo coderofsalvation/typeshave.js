@@ -5,7 +5,7 @@ Prevent functions from exploding with garbage-in garbage-out.
 
 <center><img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
 
-Guard your function's incoming data using typesafe wrappers.
+Guard your function's incoming data using typeshave wrappers in JS & PHP ([typeshave website](http://coderofsalvation.github.io/typeshave/)).
 
 ## Usage 
 
@@ -117,6 +117,7 @@ Still wondering why functions like this explode once in a while? :D
 Did you you try PITA-fying your code with if/else checks?
 
     if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
+    // omg how do I even check properties recursively?
 
 
 ## Conclusion
@@ -129,4 +130,6 @@ No more :
 * unsafe recursive datastructures 
 * verbose unittests doing typesafe stuff 
 
-Typeshave deals with problems immediately when they occur
+Typeshave deals with problems immediately when they occur to prevent this:
+
+<center><img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
