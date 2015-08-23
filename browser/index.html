@@ -1,0 +1,18 @@
+<html>
+  <body>
+    <script src="typeshave.js"/></script>
+    <script>
+      typeshave = require("typeshave").typesafe;
+
+      var foo = typeshave({
+        foo: { type: "string" },
+        bar: { type: "boolean" }
+      }, function(foo,bar){
+        alert("ok data passed!");
+      });
+
+      foo( "string", true );
+    </script>
+
+  </body>
+</html>

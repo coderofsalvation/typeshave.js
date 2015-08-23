@@ -1,0 +1,5 @@
+#!/bin/bash 
+dir="$(pwd)"
+cd /tmp
+npm install typeshave
+browserify --require typeshave > "$dir"/browser/typeshave.js
