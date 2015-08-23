@@ -9,11 +9,35 @@ Prevent functions from exploding with garbage-in garbage-out.
 
 ## Usage 
 
-When passing around 'phat object' data-structure to functions:
+    COFFEESCRIPT                          JAVASCRIPT
+    ============                          ==========
+    foo = typesafe                        var foo = typesafe({
+      foo: { type: "string"  }              foo: { type: "string" }
+      bar: { type: "integer" }              bar: { type: "integer" }
+    , ( foo, bar ) ->                     }, function(foo, bar) {
+      console.log "arguments are valid"     return console.log("arguments are valid");
+                                          });
+
+## JS is not typesafe, which is handy with PHAT objects
+
+And sometimes typesafe functions are handy, especially dealing with phat objects:
+
+* REST payloads 
+* objects which represent configs or options 
+* datastructures and resultsets for html-rendering or processing purposes
+
+Are you still passing phat data around `fingers-crossed`-style?
+Still wondering why functions like this explode once in a while? :D
 
     foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
 
-Typesafe will make sure your functions will only accept valid datastructures:
+Did you you try spaghetti-fying your code with if/else checks?
+
+    if( data == undefined data.bar == undefined || bar == undefined || WTF this is frustrating!
+
+## The answer
+
+Typesafe will make sure your functions will only accept valid datastructures upfront:
 
      COFFEESCRIPT                                            JAVASCRIPT
      ============                                            ==========
@@ -89,17 +113,6 @@ or when environment variable 'DEBUG' is set you'll get *all* info:
             "subErrors": null,
             "stack": "Error\n  at 
     ...
-
-## Wrap functions into typesafe functions
-
-    COFFEESCRIPT                          JAVASCRIPT
-    ============                          ==========
-    foo = typesafe                        var foo = typesafe({
-      foo: { type: "string"  }              foo: { type: "string" }
-      bar: { type: "integer" }              bar: { type: "integer" }
-    , ( foo, bar ) ->                     }, function(foo, bar) {
-      console.log "arguments are valid"     return console.log("arguments are valid");
-                                          });
 
 ## Conclusion
 
