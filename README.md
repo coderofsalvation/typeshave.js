@@ -5,7 +5,7 @@ Lightweight function wrapper to ensure typesafe data. Wrap functions,forms,api's
 Guard your function's incoming data using typesafe wrappers.
 Prevent functions from exploding with garbage-in garbage-out.
 
-<center>< img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
+<center><img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
 
 ## Usage 
 
