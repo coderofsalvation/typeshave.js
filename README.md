@@ -115,7 +115,7 @@ Still wondering why functions like this explode once in a while? :D
 
 Did you you try PITA-fying your code with if/else checks?
 
-    if( data == undefined data.bar == undefined || bar == undefined || WTF this is frustrating!
+    if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
 
 
 ## Conclusion
