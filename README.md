@@ -20,6 +20,9 @@ Guard your function's incoming data using typesafe wrappers.
       console.log "arguments are valid"     return console.log("arguments are valid");
                                           });
 
+> typeshave uses the establish [jsonschema](http://jsonschema.net) validation-format. Re-usable 
+in many other areas (database-, restpayload-, form-validation and so on)
+
 ## Yes! PHAT type-safe structures
 
 Passing around big-ass data-objects?
