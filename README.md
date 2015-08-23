@@ -20,26 +20,10 @@ Guard your function's incoming data using typesafe wrappers.
       console.log "arguments are valid"     return console.log("arguments are valid");
                                           });
 
-## non-typesafe is great, but not with PHAT objects
+## Yes! PHAT type-safe structures
 
-And sometimes typesafe functions are handy, especially dealing with phat objects:
-
-* REST payloads 
-* objects which represent configs or options 
-* datastructures and resultsets for html-rendering or processing purposes
-
-Are you still passing phat data around `fingers-crossed`-style?
-Still wondering why functions like this explode once in a while? :D
-
-    foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
-
-Did you you try PITA-fying your code with if/else checks?
-
-    if( data == undefined data.bar == undefined || bar == undefined || WTF this is frustrating!
-
-## The answer
-
-Typesafe will make sure your functions will only accept valid datastructures upfront:
+Passing around big-ass data-objects?
+You better police that data upfront:
 
      COFFEESCRIPT                                            JAVASCRIPT
      ============                                            ==========
@@ -115,6 +99,24 @@ or when environment variable 'DEBUG' is set you'll get *all* info:
             "subErrors": null,
             "stack": "Error\n  at 
     ...
+
+## why non-typesafe is great, but not with PHAT objects
+
+For example:
+
+* REST payloads 
+* objects which represent configs or options 
+* datastructures and resultsets for html-rendering or processing purposes
+
+Are you still passing phat data around `fingers-crossed`-style?
+Still wondering why functions like this explode once in a while? :D
+
+    foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
+
+Did you you try PITA-fying your code with if/else checks?
+
+    if( data == undefined data.bar == undefined || bar == undefined || WTF this is frustrating!
+
 
 ## Conclusion
 
