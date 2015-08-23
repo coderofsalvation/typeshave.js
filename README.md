@@ -9,6 +9,8 @@ Guard your function's incoming data using typesafe wrappers.
 
 ## Usage 
 
+    npm install typeshave
+
     COFFEESCRIPT                          JAVASCRIPT
     ============                          ==========
     foo = typesafe                        var foo = typesafe({
