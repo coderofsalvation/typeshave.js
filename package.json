@@ -1,7 +1,7 @@
 {
   "name": "typeshave",
-  "version": "0.1.9",
-  "description": "Lightweight function wrapper to ensure typesafe data. Wrap functions,forms,api's and more with jsonschema.",
+  "version": "0.1.91",
+  "description": "Lightweight typesafe function wrapper for PHP/JS. Wrap functions,forms,api's and more with jsonschema. http://coderofsalvation.github.io/typeshave",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
