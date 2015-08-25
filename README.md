@@ -11,6 +11,9 @@ Guard your function's incoming data using typeshave wrappers in JS & PHP ([types
 
     npm install typeshave
 
+
+    typesafe = require("typeshave").typesafe;
+
     COFFEESCRIPT                          JAVASCRIPT
     ============                          ==========
     foo = typesafe                        var foo = typesafe({
@@ -23,9 +26,7 @@ Guard your function's incoming data using typeshave wrappers in JS & PHP ([types
     foo(); # fail please?                 foo(); // fail please?
 
 > typeshave uses the establish [jsonschema](http://jsonschema.net) validation-format. Re-usable 
-in many other areas (database-, restpayload-, form-validation and so on)
-
-See browser usage below
+in many other areas (database-, restpayload-, form-validation and so on). For usage in the browser usage below
 
 ## Ohoh..now what?
 
@@ -36,6 +37,10 @@ By specifying a jsonschema like above, running foo() would result in 2 warnings 
     TYPESAFE_FAIL
 
 so we can gracefully deal with this using `try` `catch` and `finally` blocks
+
+## Overrule default behaviour
+
+    require("typeshave").onError = yourfunction;
 
 ## What about type-safe nested structures?
 
