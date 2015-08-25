@@ -7,10 +7,9 @@ Prevent functions from exploding with garbage-in garbage-out.
 
 Guard your function's incoming data using typeshave wrappers in JS & PHP ([typeshave website](http://typeshave.isvery.ninja)).
 
-## Usage 
-
     npm install typeshave
 
+Usage:   
 
     typesafe = require("typeshave").typesafe;
 
