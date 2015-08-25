@@ -5,7 +5,7 @@ Prevent functions from exploding with garbage-in garbage-out.
 
 <center><img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
 
-Guard your function's incoming data using typeshave wrappers in JS & PHP ([typeshave website](http://coderofsalvation.github.io/typeshave/)).
+Guard your function's incoming data using typeshave wrappers in JS & PHP ([typeshave website](http://typeshave.isvery.ninja)).
 
 ## Usage 
 
@@ -37,9 +37,9 @@ By specifying a jsonschema like above, running foo() would result in 2 warnings 
 
 so we can gracefully deal with this using `try` `catch` and `finally` blocks
 
-## What about PHAT type-safe structures?
+## What about type-safe nested structures?
 
-Passing around big-ass data-objects?
+Passing around big-ass nested data?
 You better police that data upfront:
 
      COFFEESCRIPT                                            JAVASCRIPT
@@ -103,7 +103,7 @@ or when environment variable 'DEBUG' is set you'll get *all* info:
             "stack": "Error\n  at 
     ...
 
-## why non-typesafe is great, but not with PHAT objects
+## why non-typesafe is great, but not with nested data 
 
 For example:
 
@@ -111,7 +111,7 @@ For example:
 * objects which represent configs or options 
 * datastructures and resultsets for html-rendering or processing purposes
 
-Are you still passing phat data around `fingers-crossed`-style?
+Are you still passing nested data around `fingers-crossed`-style?
 Still wondering why functions like this explode once in a while? :D
 
     foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
@@ -145,7 +145,7 @@ No more :
 * functions going out of control
 * assertions-bloat inside functions 
 * complaining about javascript not being typesafe
-* unsafe recursive datastructures 
+* unsafe nested datastructures 
 * verbose unittests doing typesafe stuff 
 
 Typeshave deals with problems immediately when they occur to prevent this:
