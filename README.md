@@ -3,7 +3,7 @@ TYPESHAVE
 
 Prevent functions from exploding with garbage-in garbage-out.
 
-<center><img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
+<center><img src="https://raw.githubusercontent.com/coderofsalvation/typeshave/gh-pages/logo.png"/></center>
 
 Guard your function's incoming data using typeshave wrappers in JS & PHP ([typeshave website](http://typeshave.isvery.ninja)).
 
