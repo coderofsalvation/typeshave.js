@@ -1,13 +1,13 @@
 tv4       = require 'tv4'
 
-module.exports = {
+module.exports = ( () ->
 
-  onError: (err) ->
+  @.onError = (err) ->
     console.log "typesafe error: "+String(e.dataPath).replace(/\//g,'.')+" "+e.message for e in err.errors
     throw "TYPESAFE_FAIL"
   
-  typesafe: (schema,method) ->
-    me = @
+  @.typesafe = (schema,method) ->
+    typeshave = me = @
     validated = () ->
       if not schema.type? # for inline function wrappers only (simple args and not phat object)
         args = {}; i = 0;
@@ -19,8 +19,11 @@ module.exports = {
         dump = { data: arguments[0], errors: v.errors, schema: schema }
         if process.env.DEBUG
           console.log JSON.stringify dump, null, 2
-        require('typeshave').onError dump
+        typeshave.onError dump
       
       return method.apply @, arguments
     return validated
-}
+
+  return @
+
+)()
