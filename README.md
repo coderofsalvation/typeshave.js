@@ -127,7 +127,7 @@ Did you you try PITA-fying your code with if/else checks?
 
 ## In the browser 
 
-    <script src="https://raw.githubusercontent.com/coderofsalvation/typeshave.js/master/browser/typeshave.min.js"></script>
+    <script src="typeshave.min.js"></script>
     <script>
       typeshave = require("typeshave").typesafe;
 

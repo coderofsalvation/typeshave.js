@@ -1,6 +1,6 @@
 {
   "name": "typeshave",
-  "version": "0.2.43",
+  "version": "0.2.44",
   "description": "Lightweight typesafe function wrapper for PHP/JS. Wrap functions,forms,api's and more with jsonschema. http://typeshave.isvery.ninja",
   "homepage": "http://coderofsalvation.github.io/typeshave",
   "main": "index.js",
@@ -13,6 +13,9 @@
     "jsonschema",
     "wrapper"
   ],
+  "scripts":{
+    "browser": "/bin/bash -c 'coffee -c *.coffee test/*.coffee && browserify -r .:typeshave | uglifyjs -o browser/typeshave.min.js'"
+  },
   "repository": "http://github.com/coderofsalvation/typeshave.js",
   "author": "Leon van Kammen / Coder of Salvation",
   "license": "BSD",
