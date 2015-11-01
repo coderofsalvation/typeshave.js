@@ -20,7 +20,6 @@ module.exports = {
         if process.env.DEBUG
           console.log JSON.stringify dump, null, 2
         require('typeshave').onError dump
-      else console.log "all fine"
       
       return method.apply @, arguments
     return validated

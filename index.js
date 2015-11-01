@@ -44,9 +44,7 @@
             console.log(JSON.stringify(dump, null, 2));
           }
           require('typeshave').onError(dump);
-        } else {
-          console.log("all fine");
-        }
+        } 
         return method.apply(this, arguments);
       };
       return validated;
