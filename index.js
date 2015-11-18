@@ -33,6 +33,7 @@
             v = schema[k];
             args[k] = arguments[String(i++)];
           }
+          console.dir(args);
           v = tjv({
             type: "object",
             required: Object.keys(schema),
@@ -40,6 +41,7 @@
           }, args);
         } else {
           v = tjv(schema, arguments[0]);
+          console.dir(arguments[0]);
         }
         if (!v.isValid) {
           dump = {

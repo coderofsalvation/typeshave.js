@@ -2,16 +2,19 @@
   <body>
     <script src="typeshave.min.js"/></script>
     <script>
-      typeshave = require("typeshave").typesafe;
+      typeshave = require("typeshave");
+      typeshave.verbose = 1;
+      typesafe = require("typeshave").typesafe;
 
-      var foo = typeshave({
+      var foo = typesafe({
         foo: { type: "string" },
-        bar: { type: "boolean" }
-      }, function(foo,bar){
+        bar: { type: "integer" },
+        bes: { type: "boolean" }
+      }, function(foo,bar,bes){
         alert("ok data passed!");
       });
 
-      foo( "string", true );
+      foo( "flop",123, true );
     </script>
 
   </body>
