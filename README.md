@@ -11,7 +11,9 @@ Guard your function's incoming data using typeshave wrappers in JS & PHP ([types
 
 Usage:   
 
-    typesafe = require("typeshave").typesafe;
+    typeshave         = require("typeshave").typesafe;
+    typeshave.verbose = 1 # 0=silent
+    typesafe          = typeshave.typesafe 
 
     COFFEESCRIPT                          JAVASCRIPT
     ============                          ==========
@@ -155,3 +157,21 @@ No more :
 Typeshave deals with problems immediately when they occur to prevent this:
 
 <center><img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
+
+## Development howto
+
+The tiniest json validator I could find was an ES6 module, which needs transpiling to ES5.
+So make sure you run this in order to generate an es5 module.
+
+    npm install --dev
+
+Add the following line to your .babelrc file:
+
+    {
+      "presets": ["es2015"]
+    }
+
+and then
+
+    npm run-script transpile
+

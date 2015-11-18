@@ -1,4 +1,6 @@
-typesafe = require('../index.coffee').typesafe
+typeshave = require('../index.coffee')
+typeshave.verbose = 1
+typesafe = typeshave.typesafe 
 
 mydata =
   type:"object"
@@ -28,11 +30,17 @@ foo = typesafe
 , ( foo, bar ) ->
   console.log "arguments are valid"
 
+bar = typesafe
+  one: { type:"integer" }
+  two: { type:"integer" }
+, ( one, two ) ->
+  console.log one+" "+two
+
 try 
   foo 123, 123
 catch TYPESAFE_FAIL
   console.log "recover"
 finally
   console.log "finish"
-  
 
+bar "foo", 123
