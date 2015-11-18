@@ -12,7 +12,6 @@ Guard your function's incoming data using typeshave wrappers in JS & PHP ([types
 Usage:   
 
     typeshave         = require("typeshave").typesafe;
-    typeshave.verbose = 1 # 0=silent
     typesafe          = typeshave.typesafe 
 
     COFFEESCRIPT                          JAVASCRIPT
@@ -48,50 +47,34 @@ so we can gracefully deal with this using `try` `catch` and `finally` blocks
 Passing around big-ass nested data?
 You better police that data upfront:
 
-     COFFEESCRIPT                                            JAVASCRIPT
-     ============                                            ==========
-     
-     typesafe = require('typeshave').typesafe                var foo, mydata, typeshave;
+     typesafe = require('typeshave').typesafe              
  
-     mydata =                                                typesafe = require('typeshave').typesafe;
+     mydata =                                              
        type: "object"
-       properties:                                           mydata = {
-         required: ["foo","records"]                           type: "object",
-         foo: { type: "string", regex: /abc/ }                 properties: {
-         bar: { type: "integer", minimum: 0, maximum: 100 }      required: ["foo","records"] 
-         records:                                                foo: {
-           type: "array"                                           type: "string",
-           items: [{                                               regex: /abc/
-             name: { type: "string", minLength: 2 }              },
-             age:  { type: "integer"              }              bar: {
-           }]                                                      type: "integer",
-                                                                   minimum: 0,
-     foo = typesafe mydata, ( data ) ->                            maximum: 100
-       console.log "valid data passed!"                          },
-       # do something with data                                  records: {
-                                                                   type: "array",
-                                                                   items: [
-                                                                     {
-                                                                       name: {
-                                                                         type: "string",
-                                                                         minLength: 2
-                                                                       },
-                                                                       age: {
-                                                                         type: "integer"
-                                                                       }
-                                                                     }
-                                                                   ]
-                                                                 }
-                                                               }
-                                                             };
- 
-                                                             foo = typeshave(mydata, function(data) {
-                                                               return console.log("valid data passed!");
-                                                             });
+       properties:                                         
+         required: ["foo","records"]                       
+         foo: { type: "string", regex: /abc/ }             
+         bar: { type: "integer", minimum: 0, maximum: 100 }
+         records:                                          
+           type: "array"                                   
+           items: {                                        
+             type:"object"
+             properties: "
+              name: { type: "string", minLength: 2 }       
+              age:  { type: "integer"              }       
+           ]                                               
+                                                           
+     foo = typesafe mydata, ( data ) ->                    
+       console.log "valid data passed!"                    
+       # do something with data                            
 
-## Get the full punishment!
+## Get full punishment!
 
-or when environment variable 'DEBUG' is set you'll get *all* info:
+do this:
+
+    typeshave.verbose = 1
+
+open your console, and accept reality:
 
     {
       "data": {},
@@ -109,7 +92,7 @@ or when environment variable 'DEBUG' is set you'll get *all* info:
             "stack": "Error\n  at 
     ...
 
-## why non-typesafe is great, but not with nested data 
+## why non-typesafe is ok, except not with nested data 
 
 For example:
 
@@ -122,7 +105,7 @@ Still wondering why functions like this explode once in a while? :D
 
     foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
 
-Did you you try PITA-fying your code with if/else checks?
+Did you try to 'fix' your code with if/else checks?
 
     if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
     // omg how do I even check properties recursively?

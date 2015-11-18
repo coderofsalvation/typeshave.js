@@ -9,10 +9,12 @@ mydata =
     bar: {type:"integer",minimum:0,maximum:100}
     records:
       type:"array"
-      items:[{
-      name:{type:"string",minLength:2}
-      age:{type:"integer"}
-      }]
+      items:{
+        type: "object"
+        properties:
+          name:{type:"string",minLength:2}
+          age:{type:"integer"}
+      }
   required:["foo","records"]
                                                       
 foo = typesafe mydata, ( data ) ->                    
@@ -23,6 +25,13 @@ try
   foo { }
 catch TYPESAFE_FAIL
   console.log "ok"
+
+foo {
+  foo: "flop"
+  bar: 5
+  records: [{name:"flop",age:5}]
+}
+
 
 foo = typesafe
   foo: { type: "string"  }
