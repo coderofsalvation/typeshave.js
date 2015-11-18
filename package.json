@@ -1,6 +1,6 @@
 {
   "name": "typeshave",
-  "version": "0.2.46",
+  "version": "0.2.47",
   "description": "Lightweight typesafe function wrapper for PHP/JS. Wrap functions,forms,api's and more with jsonschema. http://typeshave.isvery.ninja",
   "homepage": "http://coderofsalvation.github.io/typeshave",
   "main": "index.js",
@@ -17,11 +17,7 @@
   "repository": "http://github.com/coderofsalvation/typeshave.js",
   "author": "Leon van Kammen / Coder of Salvation",
   "license": "BSD",
-  "dependencies": {},
-  "devDependencies": {
-    "babel": "^6.1.18",
-    "babel-cli": "^6.1.18",
-    "babel-preset-es2015": "^6.1.18",
-    "tiny-json-validator": "^1.0.0"
+  "dependencies": {
+    "tiny-json-validator": "git+https://github.com/coderofsalvation/tiny-json-validator.git"
   }
 }

@@ -1,4 +1,4 @@
-tjv       = require 'tiny-json-validator-es5'
+tjv       = require 'tiny-json-validator'
 clone     = (o) -> JSON.parse JSON.stringify o
 
 module.exports = ( () ->
