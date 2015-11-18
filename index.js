@@ -2,7 +2,7 @@
 (function() {
   var clone, tjv;
 
-  tjv = require('tiny-json-validator-es5');
+  tjv = require('tiny-json-validator');
 
   clone = function(o) {
     return JSON.parse(JSON.stringify(o));
