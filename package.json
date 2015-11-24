@@ -1,12 +1,13 @@
 {
   "name": "typeshave",
-  "version": "0.3.0",
+  "version": "0.3.05",
   "description": "Lightweight typesafe function wrapper for PHP/JS. Wrap functions,forms,api's and more with jsonschema. http://typeshave.isvery.ninja",
   "homepage": "http://coderofsalvation.github.io/typeshave",
   "main": "index.js",
   "scripts": {
     "transpile": "/bin/bash --login -c 'babel node_modules/tiny-json-validator -d node_modules/tiny-json-validator-es5'",
-    "browser": "/bin/bash --login -c 'coffee -c *.coffee test/*.coffee && browserify -r .:typeshave | uglifyjs -o browser/typeshave.min.js'"
+    "browser": "/bin/bash --login -c 'coffee -c *.coffee test/*.coffee && browserify -r .:typeshave | uglifyjs -o browser/typeshave.min.js'",
+    "test":"/bin/bash --login -c 'node test/test.js'"
   },
   "keywords": [
     "typesafe",
