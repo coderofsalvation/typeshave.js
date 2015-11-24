@@ -2,7 +2,7 @@
 (function() {
   var TYPESAFE_FAIL, bar, error, error1, foo, mydata, typesafe, typeshave;
 
-  typeshave = require('../index.coffee');
+  typeshave = require('../.');
 
   typeshave.verbose = 1;
 
@@ -22,8 +22,9 @@
       },
       records: {
         type: "array",
-        items: [
-          {
+        items: {
+          type: "object",
+          properties: {
             name: {
               type: "string",
               minLength: 2
@@ -32,14 +33,15 @@
               type: "integer"
             }
           }
-        ]
+        }
       }
     },
     required: ["foo", "records"]
   };
 
   foo = typesafe(mydata, function(data) {
-    return console.log("valid data passed!");
+    console.log("valid data passed! :");
+    return console.dir(data);
   });
 
   try {
@@ -48,6 +50,17 @@
     TYPESAFE_FAIL = error;
     console.log("ok");
   }
+
+  foo({
+    foo: "flop",
+    records: [
+      {
+        name: "flop",
+        age: 5
+      }
+    ],
+    unknown: true
+  });
 
   foo = typesafe({
     foo: {
@@ -80,6 +93,6 @@
     console.log("finish");
   }
 
-  bar("foo", 123);
+  process.exit(0);
 
 }).call(this);

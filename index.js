@@ -56,6 +56,6 @@
       return validated;
     };
     return this;
-  }).apply({});
+  })();
 
 }).call(this);

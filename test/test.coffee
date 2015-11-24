@@ -1,4 +1,4 @@
-typeshave = require('../index.coffee')
+typeshave = require('../.')
 typeshave.verbose = 1
 typesafe = typeshave.typesafe 
 
@@ -18,7 +18,8 @@ mydata =
   required:["foo","records"]
                                                       
 foo = typesafe mydata, ( data ) ->                    
-  console.log "valid data passed!"                    
+  console.log "valid data passed! :"
+  console.dir data
   # do something with data                            
 
 try
@@ -28,8 +29,8 @@ catch TYPESAFE_FAIL
 
 foo {
   foo: "flop"
-  bar: 5
   records: [{name:"flop",age:5}]
+  unknown:true
 }
 
 
@@ -52,4 +53,4 @@ catch TYPESAFE_FAIL
 finally
   console.log "finish"
 
-bar "foo", 123
+process.exit 0
