@@ -1,4 +1,4 @@
-#!/usr/bin/env coffee
+#!/usr/bin/env coffee --nodejs --harmony
 typeshave = require('../.')
 typeshave.verbose = 1
 typesafe = typeshave.typesafe 
