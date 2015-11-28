@@ -28,7 +28,7 @@ Usage:
 > typeshave uses the establish [jsonschema](http://jsonschema.net) validation-format. Re-usable 
 in many other areas (database-, restpayload-, form-validation and so on). For usage in the browser usage below
 
-## Ohoh..now what?
+## Wow what is that?
 
 By specifying a jsonschema like above, running foo() would result in 2 warnings + an TYPESAFE_FAIL exception : 
 
@@ -37,6 +37,32 @@ By specifying a jsonschema like above, running foo() would result in 2 warnings 
     TYPESAFE_FAIL
 
 so we can gracefully deal with this using `try` `catch` and `finally` blocks
+
+## Why should I use this
+
+> Thy shalt not pass around nested data without doing integrity-checks.
+
+Ever ran into this situation? :
+
+    foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
+
+    if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
+    // omg how do I even check properties recursively?
+    // argh..forget about it..YOLO..fingers crossed ?
+
+Then obviously at some point this happens:
+
+<center><img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
+
+> Well not anymore with typeshave :)
+
+## Usecases
+
+Use it when dealing with :
+
+* REST payloads 
+* objects which represent configs or options 
+* datastructures and resultsets for html-rendering or processing purposes
 
 ## What about type-safe nested structures?
 
@@ -88,25 +114,6 @@ open your console, and accept reality:
             "stack": "Error\n  at 
     ...
 
-## Passing aroudn nested data without checking?
-
-Thy shalt not!
-Use typehave. For example with :
-
-* REST payloads 
-* objects which represent configs or options 
-* datastructures and resultsets for html-rendering or processing purposes
-
-Ever ran into this situation? :
-
-    foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
-
-    if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
-    // omg how do I even check properties recursively?
-    // argh..forget about it..YOLO..fingers crossed ?
-
-Well not anymore :)
-
 ## In the browser 
 
     <script src="typeshave.min.js"></script>
@@ -136,7 +143,3 @@ No more :
 * complaining about javascript not being typesafe
 * unsafe nested datastructures 
 * verbose unittests doing typesafe stuff 
-
-Typeshave deals with problems immediately when they occur to prevent this:
-
-<center><img src="http://www.gifbin.com/bin/102009/1256553541_exploding-trash.gif"/></center>
