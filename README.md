@@ -23,7 +23,7 @@ Usage:
       console.log "arguments are valid"       return console.log("arguments are valid");
                                             });
     
-    foo(); # fail please?                   foo(); // fail please?
+    foo(1); # fail please?                  foo(1); // fail please?
 
 > typeshave uses the establish [jsonschema](http://jsonschema.net) validation-format. Re-usable 
 in many other areas (database-, restpayload-, form-validation and so on). For usage in the browser usage below
