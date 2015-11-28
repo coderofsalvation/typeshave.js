@@ -70,4 +70,4 @@ catch TYPESAFE_FAIL
 finally
   console.log "finish"
 
-process.exit 0
+process.exit 1
