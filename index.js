@@ -25,21 +25,25 @@
     this.typesafe = function(schema, method) {
       var validated;
       validated = function() {
-        var args, dump, i, k, v;
+        var args, dump, k, v;
         if (schema.type == null) {
           args = {};
-          i = 0;
           for (k in schema) {
             v = schema[k];
-            args[k] = arguments[String(i++)];
+            args[k] = arguments[k];
           }
-          console.dir(args);
+          console.dir({
+            "simple args": args
+          });
           v = tjv({
             type: "object",
             required: Object.keys(schema),
             properties: schema
           }, args);
         } else {
+          console.dir({
+            "phat obj": arguments
+          });
           v = tjv(schema, arguments[0]);
           console.dir(arguments[0]);
         }

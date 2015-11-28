@@ -38,10 +38,6 @@ By specifying a jsonschema like above, running foo() would result in 2 warnings 
 
 so we can gracefully deal with this using `try` `catch` and `finally` blocks
 
-## Overrule default behaviour
-
-    require("typeshave").onError = yourfunction;
-
 ## What about type-safe nested structures?
 
 Passing around big-ass nested data?
@@ -92,23 +88,22 @@ open your console, and accept reality:
             "stack": "Error\n  at 
     ...
 
-## why non-typesafe is ok, except not with nested data 
+## Nested data? Fingers crossed?
 
-For example:
+Don't. Use typehave. For example:
 
 * REST payloads 
 * objects which represent configs or options 
 * datastructures and resultsets for html-rendering or processing purposes
 
 Are you still passing nested data around `fingers-crossed`-style?
-Still wondering why functions like this explode once in a while? :D
+Ever ran into this situation? :
 
     foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
 
-Did you try to 'fix' your code with if/else checks?
-
     if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
     // omg how do I even check properties recursively?
+    // argh..forget about it..YOLO
 
 ## In the browser 
 
@@ -126,6 +121,9 @@ Did you try to 'fix' your code with if/else checks?
       foo( "string", true );
     </script>
 
+## Overrule default behaviour
+
+    require("typeshave").onError = yourfunction;
 
 ## Conclusion
 
