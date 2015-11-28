@@ -1,15 +1,14 @@
-{spawn} = require 'child_process'
-{print} = require 'util'
-fs      = require 'fs'
+{ exec } = require 'child_process'
 
-spawnAndRun = (command, args, callback) ->
-  subproc = spawn(command, args)
-  subproc.stderr.on 'data', (data) ->
-  process.stderr.write data.toString()
-  subproc.stdout.on 'data', (data) ->
-  print data.toString()
-  subproc.on 'exit', (code) ->
-  callback?() if code is 0
+execHandle = (after) ->
+  (err, stdout, stderr) ->
+    console.log stdout + stderr
+    after( ( if err then 1 else 0 ) )
+
+run = (command) ->
+  (after) ->
+    console.log "RUNNING #{command}"
+    exec command, execHandle after
 
 test = (callback) ->
   woof = '''
@@ -20,7 +19,8 @@ test = (callback) ->
                                                          
   '''
   console.log woof
-  require './test/test.coffee'
+  run( 'coffee --nodejs --harmony ./test/test.coffee' ) (code) ->
+    process.exit code
 
 task 'test', 'Run all tests', ->
   test()
