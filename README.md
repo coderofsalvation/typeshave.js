@@ -48,11 +48,11 @@ You better police that data upfront:
      mydata =                                              
        type: "object"
        properties:                                         
-         required: ["foo","records"]                       
-         foo: { type: "string", regex: /abc/ }             
+         foo: { type: "string", regex: /abc/, required:true }             
          bar: { type: "integer", minimum: 0, maximum: 100 }
          records:                                          
            type: "array"                                   
+           required: true
            items: {                                        
              type:"object"
              properties: "
@@ -88,22 +88,24 @@ open your console, and accept reality:
             "stack": "Error\n  at 
     ...
 
-## Nested data? Fingers crossed?
+## Passing aroudn nested data without checking?
 
-Don't. Use typehave. For example:
+Thy shalt not!
+Use typehave. For example with :
 
 * REST payloads 
 * objects which represent configs or options 
 * datastructures and resultsets for html-rendering or processing purposes
 
-Are you still passing nested data around `fingers-crossed`-style?
 Ever ran into this situation? :
 
     foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
 
     if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
     // omg how do I even check properties recursively?
-    // argh..forget about it..YOLO
+    // argh..forget about it..YOLO..fingers crossed ?
+
+Well not anymore :)
 
 ## In the browser 
 
