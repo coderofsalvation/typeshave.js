@@ -32,8 +32,8 @@ in many other areas (database-, restpayload-, form-validation and so on). For us
 
 By specifying a jsonschema like above, running foo() would result in 2 warnings + an TYPESAFE_FAIL exception : 
 
-    typesafe error:  Missing required property: foo
-    typesafe error:  Missing required property: bar 
+    typesafe error:  Wrong type, expected string: foo 
+    typesafe error:  Missing required property: bar
     TYPESAFE_FAIL
 
 so we can gracefully deal with this using `try` `catch` and `finally` blocks
