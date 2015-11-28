@@ -5,15 +5,15 @@ typesafe = typeshave.typesafe
 mydata =
   type:"object"
   properties:
-    foo: {type:"string",regex:/abc/, required:true }
-    bar: {type:"integer",minimum:0,maximum:100}
+    foo: type:"string"  ,regex:'/abc/' ,required:true
+    bar: type:"integer" ,minimum:0     ,maximum:100
     records:
       type:"array"
       required: true
       items:{
         type: "object"
         properties:
-          name:{type:"string",minLength:2}
+          name: type:"string",minLength:2
           age:{type:"integer"}
       }
                                                       

@@ -14,16 +14,16 @@ Usage:
     typeshave         = require("typeshave").typesafe;
     typesafe          = typeshave.typesafe 
 
-    COFFEESCRIPT                          JAVASCRIPT
-    ============                          ==========
-    foo = typesafe                        var foo = typesafe({
-      foo: { type: "string"  }              foo: { type: "string" }
-      bar: { type: "integer" }              bar: { type: "integer" }
-    , ( foo, bar ) ->                     }, function(foo, bar) {
-      console.log "arguments are valid"     return console.log("arguments are valid");
-                                          });
+    COFFEESCRIPT                            JAVASCRIPT
+    ============                            ==========
+    foo = typesafe                          var foo = typesafe({
+      foo: type: "string"                     foo: { type: "string" }
+      bar: type: "integer",required:true      bar: { type: "integer", required:true }
+    , ( foo, bar ) ->                       }, function(foo, bar) {
+      console.log "arguments are valid"       return console.log("arguments are valid");
+                                            });
     
-    foo(); # fail please?                 foo(); // fail please?
+    foo(); # fail please?                   foo(); // fail please?
 
 > typeshave uses the establish [jsonschema](http://jsonschema.net) validation-format. Re-usable 
 in many other areas (database-, restpayload-, form-validation and so on). For usage in the browser usage below
