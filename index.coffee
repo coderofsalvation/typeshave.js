@@ -1,4 +1,3 @@
-tjv       = require 'tiny-json-validator'
 clone     = (o) -> JSON.parse JSON.stringify o
 
 module.exports = ( () ->
@@ -13,16 +12,15 @@ module.exports = ( () ->
   
   @.typesafe = (schema,method) ->
     validated = () ->
+      jv = require('tv4-node').tv4
       if not schema.type? # for inline function wrappers only (simple args and not phat object)
-        args = {}; args[k] = arguments[k] for k,v of schema
-        console.dir {"simple args":args} 
-        v = tjv { type: "object", required: Object.keys(schema),  properties: schema }, args
+        console.dir arguments
+        args = {}; i=0; args[k] = arguments[i++] for k,v of schema
+        v = jv.validate args, { type: "object", required: Object.keys(schema),  properties: schema }
       else
-        console.dir {"phat obj":arguments} 
-        v = tjv schema, arguments[0]
-        console.dir arguments[0]
-      if not v.isValid 
-        dump = { data: arguments, errors: v.errors, schema: schema }
+        v = jv.validate arguments[0], schema
+      if not v
+        dump = { data: arguments, errors: jv.error, schema: schema }
         typeshave.onError dump
       return method.apply @, arguments
     return validated

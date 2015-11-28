@@ -42,16 +42,16 @@ foo = typesafe
   bar: { type: "integer" }
 , ( foo, bar ) ->
   console.log "foo()"
-  process.exit 1 if foo is not 123
+  process.exit 1 if foo is not "123"
   process.exit 1 if bar is not 234
 
 foorev = typesafe
   bar: { type: "integer" }
   foo: { type: "string"  }
-, ( foo, bar ) ->
+, ( bar, foo ) ->
   console.log "foo()"
-  process.exit 1 if foo is not 123
   process.exit 1 if bar is not 234
+  process.exit 1 if foo is not "123"
 
 bar = typesafe
   one: { type:"integer" }
@@ -62,12 +62,12 @@ bar = typesafe
   process.exit 1 if two is not 567
 
 try 
-  foo 123, 234
-  foorev 234, 123 
+  foo "123", 234
+  foorev 234, "123" 
   bar 456, 567
-catch TYPESAFE_FAIL
-  console.log "recover"
-finally
-  console.log "finish"
+  console.log "everything ok"
+catch err 
+  process.exit 1
+  
 
-process.exit 1
+process.exit 0

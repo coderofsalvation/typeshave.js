@@ -5,7 +5,6 @@
   "homepage": "http://coderofsalvation.github.io/typeshave",
   "main": "index.js",
   "scripts": {
-    "transpile": "/bin/bash --login -c 'babel node_modules/tiny-json-validator -d node_modules/tiny-json-validator-es5'",
     "browser": "/bin/bash --login -c 'coffee -c *.coffee test/*.coffee && browserify -r .:typeshave | uglifyjs -o browser/typeshave.min.js'",
     "test": "/bin/bash --login -c 'cake test'"
   },
@@ -19,8 +18,7 @@
   "author": "Leon van Kammen / Coder of Salvation",
   "license": "BSD",
   "dependencies": {
-    "tiny-json-validator": "git+https://github.com/coderofsalvation/tiny-json-validator.git"
+    "tv4-node": "0.0.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
