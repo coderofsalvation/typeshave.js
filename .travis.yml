@@ -1,4 +1,6 @@
 language: node_js
+before_script:
+  - npm install -g testosteron coffee-script
 node_js:
 - "4.1"
 - "4.0"
