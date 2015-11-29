@@ -46,9 +46,10 @@ Ever ran into this situation? :
 
     foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
 
-    if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
-    // omg how do I even check properties recursively?
-    // argh..forget about it..YOLO..fingers crossed ?
+    function foo(data){
+      if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
+      // omg how do I even check properties recursively?
+      // argh..forget about it..YOLO..fingers crossed ?
 
 Then obviously at some point this happens:
 
