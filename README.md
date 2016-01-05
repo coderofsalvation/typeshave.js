@@ -3,7 +3,7 @@ TYPESHAVE
 
 Prevent functions from exploding with garbage-in garbage-out.
 
-![Build Status](https://travis-ci.org/coderofsalvation/typeshave.svg?branch=master)
+![Build Status](https://travis-ci.org/coderofsalvation/typeshave.js.svg?branch=master)
 
 <center><img src="https://raw.githubusercontent.com/coderofsalvation/typeshave/gh-pages/logo.png"/></center>
 
