@@ -1,6 +1,6 @@
 {
   "name": "typeshave",
-  "version": "0.3.15",
+  "version": "0.3.16",
   "description": "Lightweight typesafe function wrapper for PHP/JS. Wrap functions,forms,api's and more with jsonschema. http://typeshave.isvery.ninja",
   "homepage": "http://coderofsalvation.github.io/typeshave",
   "main": "index.js",

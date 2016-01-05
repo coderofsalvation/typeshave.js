@@ -3,6 +3,8 @@ TYPESHAVE
 
 Prevent functions from exploding with garbage-in garbage-out.
 
+![Build Status](https://travis-ci.org/coderofsalvation/typeshave.svg?branch=master)
+
 <center><img src="https://raw.githubusercontent.com/coderofsalvation/typeshave/gh-pages/logo.png"/></center>
 
 Guard your function's incoming data using typeshave wrappers in JS & PHP ([typeshave website](http://typeshave.isvery.ninja)).
@@ -25,10 +27,9 @@ Usage:
     
     foo(1); # fail please?                  foo(1); // fail please?
 
-> typeshave uses the establish [jsonschema](http://jsonschema.net) validation-format. Re-usable 
-in many other areas (database-, restpayload-, form-validation and so on). For usage in the browser usage below
+> typeshave is built on the shoulders of the [jsonschema](http://jsonschema.net) standard. 
 
-## Wow what is that?
+## Even deepnested structures? Yes!
 
 By specifying a jsonschema like above, running foo() would result in 2 warnings + an TYPESAFE_FAIL exception : 
 
@@ -40,16 +41,14 @@ so we can gracefully deal with this using `try` `catch` and `finally` blocks
 
 ## Why should I use this
 
-> Thy shalt not pass around nested data without doing integrity-checks.
-
 Ever ran into this situation? :
 
-    foo( { foo:"bar", bar: 123, records: [ 1, 2 ] } );
+    foo( { foo:"bar", bar: 123, records: [ 1, 2 ], cbs: [myfunction] } );
 
     function foo(data){
       if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
       // omg how do I even check properties recursively?
-      // argh..forget about it..YOLO..fingers crossed ?
+      // argh..forget about it? YOLO?
 
 Then obviously at some point this happens:
 
@@ -86,6 +85,7 @@ You better police that data upfront:
               name: { type: "string", minLength: 2 }       
               age:  { type: "integer"              }       
            ]                                               
+         cbs: { type: "array", items: { type: "function", required :true } }
                                                            
      foo = typesafe mydata, ( data ) ->                    
        console.log "valid data passed!"                    
