@@ -135,6 +135,25 @@ open your console, and accept reality:
 
     require("typeshave").onError = yourfunction;
 
+## Manual validation / Currying
+
+Currying is trick, since a validationstep assumes a final state.
+While currying does not.
+However, manual validation is always at your fingertips as well:
+
+      var typeshave = require('typeshave)
+      var validate  = typeshave.validate
+
+      var foo = function(foo,bar)
+        ok = validate( arguments, {
+          foo: { type: "string" },
+          bar: { type: "boolean" }
+        });
+
+        if( ok ) .... else ...
+
+> The example uses `arguments` as input, but passing an object would work as well.
+
 ## Conclusion
 
 No more :
