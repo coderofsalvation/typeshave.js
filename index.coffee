@@ -21,13 +21,14 @@ module.exports = ( () ->
 
   @typesafe = (schema,method) ->
     validated = () ->
-      if not schema.type? # for inline function wrappers only (simple args and not phat object)
-        args = {}; i=0; args[k] = arguments[i++] for k,v of schema
-        v = typeshave.validate args, { type: "object", required: Object.keys(schema),  properties: schema }
-      else
-        v = typeshave.validate arguments[0], schema
+      args = {} ; _schema = clone schema
+      if not _schema.type? # for inline function wrappers only (simple args and not phat object)
+        i=0; args[k] = arguments[i++] for k,v of schema
+        _schema = { type: "object", required: Object.keys(schema),  properties: schema }
+      else args = arguments[0]
+      v = typeshave.validate args, _schema
       if not v
-        dump = { data: arguments, errors: v.error, schema: schema }
+        dump = { data: args, errors: v.error, schema: _schema }
         typeshave.onError dump
       return method.apply @, arguments
     return validated
