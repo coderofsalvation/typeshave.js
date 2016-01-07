@@ -34,9 +34,9 @@ module.exports = (function() {
   this.onError = (function(_this) {
     return function(err) {
       if (_this.verbose > 0) {
-        console.dir({
+        console.log(JSON.stringify({
           'typeshave exception': err
-        });
+        }, null, 2));
       }
       throw "TYPESAFE_FAIL";
     };
@@ -63,7 +63,7 @@ module.exports = (function() {
       if (!v) {
         dump = {
           data: arguments,
-          errors: jv.error,
+          errors: v.error,
           schema: schema
         };
         typeshave.onError(dump);

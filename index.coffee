@@ -16,7 +16,7 @@ module.exports = ( () ->
   @verbose = 0
 
   @onError = (err) =>
-    console.dir {'typeshave exception': err} if @.verbose > 0
+    console.log JSON.stringify {'typeshave exception': err},null,2 if @.verbose > 0
     throw "TYPESAFE_FAIL"
 
   @typesafe = (schema,method) ->
@@ -27,7 +27,7 @@ module.exports = ( () ->
       else
         v = typeshave.validate arguments[0], schema
       if not v
-        dump = { data: arguments, errors: jv.error, schema: schema }
+        dump = { data: arguments, errors: v.error, schema: schema }
         typeshave.onError dump
       return method.apply @, arguments
     return validated
