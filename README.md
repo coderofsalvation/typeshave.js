@@ -13,7 +13,7 @@ Guard your function's incoming data using typeshave wrappers in JS ([typeshave w
 
 Usage:   
 
-    typeshave         = require("typeshave").typesafe;
+    typeshave         = require("typeshave")
     typesafe          = typeshave.typesafe 
 
     COFFEESCRIPT                            JAVASCRIPT
@@ -29,7 +29,7 @@ Usage:
 
 > typeshave is built on the shoulders of the [jsonschema](http://jsonschema.net) standard. 
 
-## Even deepnested structures? Yes!
+## Deepnested structures? Yes!
 
 By specifying a jsonschema like above, running foo() would result in 2 warnings + an TYPESAFE_FAIL exception : 
 
@@ -79,12 +79,12 @@ You better police that data upfront:
          records:                                          
            type: "array"                                   
            required: true
-           items: {                                        
+           items:
              type:"object"
              properties: "
               name: { type: "string", minLength: 2 }       
               age:  { type: "integer"              }       
-           ]                                               
+            
          cbs: { type: "array", items: { type: "function", required :true } }
                                                            
      foo = typesafe mydata, ( data ) ->                    
