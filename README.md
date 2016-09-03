@@ -135,11 +135,9 @@ open your console, and accept reality:
 
     require("typeshave").onError = yourfunction;
 
-## Manual validation / Currying
+## Manual validation
 
-Currying is trick, since a validationstep assumes a final state.
-While currying does not.
-However, manual validation is always at your fingertips as well:
+Manual validation is always at your fingertips as well:
 
       var typeshave = require('typeshave)
       var validate  = typeshave.validate
