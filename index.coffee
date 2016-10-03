@@ -7,7 +7,7 @@ module.exports = ( () ->
   @tv4 = require('tv4-node').tv4
   @validate = (data,schema) -> 
     _data = data
-    _data = Array.prototype.slice.call(data) if data.callee?
+    _data = Array.prototype.slice.call(data) if data and data.callee?
     if not schema.type? # for inline function wrappers only (simple args and not phat object)
       objdata = {}; i=1; objdata[k] = data[i++] for k,v of schema ; _data = objdata
       schema = { type: "object", required: Object.keys(schema),  properties: schema }
