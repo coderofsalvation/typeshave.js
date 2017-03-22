@@ -17,11 +17,6 @@ module.exports = function() {
 
   this.verbose = 0;
 
-  this.onError = err => {
-    if (this.verbose > 0) { console.log(JSON.stringify({'typeshave exception': err},null,2)); }
-    throw new Error("TYPESAFE_FAIL");
-  };
-
   this.typesafe = function(schema,method) {
     let validated = function() {
       let args = {};  let _schema = clone(schema);
@@ -31,8 +26,8 @@ module.exports = function() {
       } else { args = arguments[0]; }
       var v = typeshave.validate(args, _schema);
       if (!v) {
-        let dump = { data: args, errors: v.error, schema: _schema };
-        throw new Error(dump);
+        let dump = { data: args, errors: typeshave.tv4.error, schema: _schema };
+        throw dump
       }
       return method.apply(this, arguments);
     };
