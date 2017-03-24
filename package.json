@@ -5,7 +5,7 @@
   "homepage": "http://coderofsalvation.github.io/typeshave",
   "main": "index.js",
   "scripts": {
-    "browser": "buble index.js > typeshave.js && uglify -s typeshave.js -o typeshave.min.js",
+    "browser": "buble index.js > dist/typeshave.js && uglify -s dist/typeshave.js -o dist/typeshave.min.js",
     "test": "node test/test.js"
   },
   "keywords": [
