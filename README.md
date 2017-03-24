@@ -7,39 +7,35 @@ Prevent functions from exploding with garbage-in garbage-out.
 
 <center><img src="https://raw.githubusercontent.com/coderofsalvation/typeshave/gh-pages/logo.png"/></center>
 
-Guard your function's incoming data using typeshave wrappers in JS ([typeshave website](http://typeshave.isvery.ninja)).
-
-    npm install typeshave
+Typecheck functionguards for function arguments and (nested) objects when it matters (REST payloads etc):
 
 Usage:   
 
     typeshave         = require("typeshave")
-    typesafe          = typeshave.typesafe 
+    typesafe          = typeshave.
 
-    COFFEESCRIPT                            JAVASCRIPT
-    ============                            ==========
-    foo = typesafe                          var foo = typesafe({
-      foo: type: "string"                     foo: { type: "string" }
-      bar: type: "integer",required:true      bar: { type: "integer", required:true }
-    , ( foo, bar ) ->                       }, function(foo, bar) {
-      console.log "arguments are valid"       return console.log("arguments are valid");
-                                            });
-    
-    foo(1); # fail please?                  foo(1); // fail please?
+    var foo = typesafe({
+      foo: { type: "string" }
+      bar: { type: "integer", required:true }
+    }, (foo, bar) => {
+      return console.log("arguments are valid");
+    });
 
-> typeshave is built on the shoulders of the [jsonschema](http://jsonschema.net) standard. 
+    foo(1); // throws typesafe exception
 
-## Deepnested structures? Yes!
+> NOTE: typeshave is built on the shoulders of the [jsonschema](http://jsonschema.net) standard. 
 
-By specifying a jsonschema like above, running foo() would result in 2 warnings + an TYPESAFE_FAIL exception : 
+Output:
+  
+    Error: 
+    {
+      "data": 1,
+      "errors": {
+        "errors": [
+          {
+            "message": "Argument foo should be string"
 
-    typesafe error:  Wrong type, expected string: foo 
-    typesafe error:  Missing required property: bar
-    TYPESAFE_FAIL
-
-so we can gracefully deal with this using `try` `catch` and `finally` blocks
-
-## Why should I use this
+## Why should I use this? 
 
 Ever ran into this situation? :
 
@@ -49,6 +45,55 @@ Ever ran into this situation? :
       if( data == undefined data.bar == undefined || bar == undefined || Argh this is a big PITA 
       // omg how do I even check properties recursively?
       // argh..forget about it? YOLO?
+      // *wait until disaster happens*
+
+Say bye bye to 
+
+* the temptation of typescript?
+* functions going out of control
+* assertions-bloat inside functions 
+* complaining about javascript not being 
+* unsafe nested datastructures 
+* verbose unittests doing typesafe stuff 
+
+## Recover from errors:
+
+The `typeshave.error(errors)` function is triggered in case of errors, you can define your own like so:
+
+    typeshave.error = (errors) => {
+      console.error(errors)
+      return new Error(errors)
+    }
+
+## What about type-safe nested structures?
+
+Passing around big-ass nested data?
+You better police that data upfront:
+
+     schema = {                                             
+       type: "object", 
+       properties:{                                         
+         foo: { type: "string", regex: /abc/, required:true }, 
+         bar: { type: "integer", minimum: 0, maximum: 100 }, 
+         records:{
+           type: "array", 
+           required:true, 
+           items: {
+             type:"object", 
+             properties: {
+              name: { type: "string", minLength: 2 }, 
+              age:  { type: "integer"              }       
+             }
+           } 
+         }, 
+         cbs: { type: "array", items: { type: "function", required :true } }
+      }
+                                                           
+     function foo = typesafe( schema, ( data ) => {                    
+       console.log "valid data passed!"                    
+       # do something with data                            
+     }
+
 
 Then obviously at some point this happens:
 
@@ -58,62 +103,10 @@ Then obviously at some point this happens:
 
 ## Usecases
 
-Use it when dealing with :
-
 * REST payloads 
+* payment transaction payloads
 * objects which represent configs or options 
-* datastructures and resultsets for html-rendering or processing purposes
-
-## What about type-safe nested structures?
-
-Passing around big-ass nested data?
-You better police that data upfront:
-
-     typesafe = require('typeshave').typesafe              
- 
-     mydata =                                              
-       type: "object"
-       properties:                                         
-         foo: { type: "string", regex: /abc/, required:true }             
-         bar: { type: "integer", minimum: 0, maximum: 100 }
-         records:                                          
-           type: "array"                                   
-           required: true
-           items:
-             type:"object"
-             properties: "
-              name: { type: "string", minLength: 2 }       
-              age:  { type: "integer"              }       
-            
-         cbs: { type: "array", items: { type: "function", required :true } }
-                                                           
-     foo = typesafe mydata, ( data ) ->                    
-       console.log "valid data passed!"                    
-       # do something with data                            
-
-## Get full punishment!
-
-do this:
-
-    typeshave.verbose = 1
-
-open your console, and accept reality:
-
-    {
-      "data": {},
-      "errors": {
-        "errors": [
-          {
-            "message": "Missing required property: foo",
-            "params": {
-              "key": "foo"
-            },
-            "code": 302,
-            "dataPath": "",
-            "schemaPath": "/required/0",
-            "subErrors": null,
-            "stack": "Error\n  at 
-    ...
+* datastructures and resultsets for html-rendering or processing 
 
 ## In the browser 
 
@@ -131,10 +124,6 @@ open your console, and accept reality:
       foo( "string", true );
     </script>
 
-## Overrule default behaviour
-
-    require("typeshave").onError = yourfunction;
-
 ## Manual validation
 
 Manual validation is always at your fingertips as well:
@@ -143,21 +132,10 @@ Manual validation is always at your fingertips as well:
       var validate  = typeshave.validate
 
       var foo = function(foo,bar)
-        ok = validate( arguments, {
+         validate( arguments, {               // throws exception in case of error
           foo: { type: "string" },
           bar: { type: "boolean" }
         });
-
-        if( ok ) .... else ...
+        // do stuff with data
 
 > The example uses `arguments` as input, but passing an object would work as well.
-
-## Conclusion
-
-No more :
-
-* functions going out of control
-* assertions-bloat inside functions 
-* complaining about javascript not being typesafe
-* unsafe nested datastructures 
-* verbose unittests doing typesafe stuff 

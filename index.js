@@ -1,6 +1,6 @@
 let clone     = o => JSON.parse(JSON.stringify(o));
 
-module.exports = function() {
+var obj = function() {
 
   let typeshave = this;
 
@@ -12,10 +12,14 @@ module.exports = function() {
       let objdata = {}; let i=1; for (let k in schema) { let v = schema[k];       objdata[k] = data[i++];  _data = objdata; }
       schema = { type: "object", required: Object.keys(schema),  properties: schema };
     }
-    return typeshave.tv4.validate(_data, schema); 
+    if( typeshave.tv4.validate(_data, schema) ) return true
+    typeshave.error( typeshave.tv4.errors )
   };
 
-  this.verbose = 0;
+  this.error = (errors) => {
+    console.error(errors)
+    return new Error(errors)
+  }
 
   this.typesafe = function(schema,method) {
     let validated = function() {
@@ -37,3 +41,10 @@ module.exports = function() {
   return this;
 
 }.apply({});
+
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
+  module.exports = obj;
+} else{
+  window.typeshave = obj
+	if( !console.error ) console.error = console.log
+}

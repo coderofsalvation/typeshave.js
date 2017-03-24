@@ -1,14 +1,18 @@
 {
   "name": "typeshave",
-  "version": "0.4.2",
-  "description": "Lightweight typesafe function wrapper. Wrap functions,forms,api's and more with jsonschema. http://typeshave.isvery.ninja",
+  "version": "0.4.4",
+  "description": "Typecheck functionguards for function arguments and (nested) objects when it matters (REST payloads etc)",
   "homepage": "http://coderofsalvation.github.io/typeshave",
   "main": "index.js",
   "scripts": {
-    "browser": "/bin/bash --login -c 'coffee -c *.coffee test/*.coffee && browserify -r .:typeshave | uglifyjs -o browser/typeshave.min.js'",
-    "test": "/bin/bash --login -c 'cake test'"
+    "browser": "buble index.js > typeshave.js && uglify -s typeshave.js -o typeshave.min.js",
+    "test": "node test/test.js"
   },
   "keywords": [
+    "typecheck",
+    "nested",
+    "object",
+    "validation",
     "typesafe",
     "assertion",
     "jsonschema",
@@ -20,5 +24,8 @@
   "dependencies": {
     "tv4-node": "0.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "buble": "^0.15.1",
+    "uglifyjs": "^2.4.10"
+  }
 }
