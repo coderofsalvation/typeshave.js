@@ -1,6 +1,6 @@
 {
   "name": "typeshave",
-  "version": "0.4.4",
+  "version": "0.4.6",
   "description": "Typecheck functionguards for function arguments and (nested) objects when it matters (REST payloads etc)",
   "homepage": "http://coderofsalvation.github.io/typeshave",
   "main": "index.js",

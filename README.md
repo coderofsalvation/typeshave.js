@@ -12,7 +12,7 @@ Typecheck functionguards for function arguments and (nested) objects when it mat
 Usage:   
 
     typeshave         = require("typeshave")
-    typesafe          = typeshave.
+    typesafe          = typeshave.typesafe
 
     var foo = typesafe({
       foo: { type: "string" }
